@@ -1,4 +1,5 @@
 using Session07.UI;
+using System.Reflection;
 
 namespace Session07
 {
@@ -15,6 +16,15 @@ namespace Session07
             //formLogin.Show();
             //var formRegister = new FormRegister();
             //formLogin.Show();
+
+            var assembly = Assembly.GetExecutingAssembly();
+            var forms = assembly.GetTypes()
+                    .Where(t => t.BaseType == typeof(Form))                    
+                    .Where(t => t != this.GetType());
+            foreach (var form in forms)
+            {
+                ((Form)Activator.CreateInstance(form)).Show();
+            }
         }
     }
 }
