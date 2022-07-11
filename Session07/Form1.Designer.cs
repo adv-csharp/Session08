@@ -30,6 +30,7 @@
         {
             this.btnOpenAllForms = new System.Windows.Forms.Button();
             this.buttonReflection2 = new System.Windows.Forms.Button();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpenAllForms
@@ -52,11 +53,22 @@
             this.buttonReflection2.UseVisualStyleBackColor = true;
             this.buttonReflection2.Click += new System.EventHandler(this.buttonReflection2_Click);
             // 
+            // btnRegister
+            // 
+            this.btnRegister.Location = new System.Drawing.Point(12, 235);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(144, 45);
+            this.btnRegister.TabIndex = 2;
+            this.btnRegister.Text = "Register";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(776, 449);
+            this.ClientSize = new System.Drawing.Size(567, 300);
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.buttonReflection2);
             this.Controls.Add(this.btnOpenAllForms);
             this.Name = "Form1";
@@ -69,5 +81,6 @@
 
         private Button btnOpenAllForms;
         private Button buttonReflection2;
+        private Button btnRegister;
     }
 }

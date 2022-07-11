@@ -47,6 +47,12 @@ namespace Session07
             }
             return String.Join("💎", list);
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            var frm = new FormRegister();
+            frm.ShowDialog();
+        }
     }
 
     class City
