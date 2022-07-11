@@ -1,0 +1,28 @@
+﻿Authenticate
+	who are you
+Auhorize
+	what you can do
+
+Authenticate
+	FORM
+	LDAP 
+	CAS
+
+Form
+	username / phone / code meli /  email
+		unique
+	password
+		hash -> one way
+		passWord -> 0262EE311440B922FE84C4DA925AF95A8A81A1204243653C4B7E9677587C496EE7FD9BF300961F628FC26CC298588426FF2C208BDF44A057D89C8FC75240FA5B
+					5AAB1809AB983D7FE61E7EA136216143FD06C98B4075D20C283895E6F8F92CDD3C5B79ADBDB1DF8C19E44F9A347F1CEC9C24FE6F6E7FB4174A0FBA30081842C4
+		input -> hash(input) -> comapre db
+		policy
+			min length 8
+			uppercase
+
+	id -> GUID / identity auto incremnet
+
+
+	HASH 
+		hash(input + GUID), GUID
+			Salt
