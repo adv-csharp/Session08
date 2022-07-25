@@ -53,6 +53,12 @@ namespace Session07
             var frm = new FormRegister();
             frm.ShowDialog();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            var frm = new FormLogin();
+            frm.ShowDialog();
+        }
     }
 
     class City

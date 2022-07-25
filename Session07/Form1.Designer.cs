@@ -31,6 +31,7 @@
             this.btnOpenAllForms = new System.Windows.Forms.Button();
             this.buttonReflection2 = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpenAllForms
@@ -55,7 +56,7 @@
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(12, 235);
+            this.btnRegister.Location = new System.Drawing.Point(12, 188);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(144, 45);
             this.btnRegister.TabIndex = 2;
@@ -63,11 +64,22 @@
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
+            // btnLogin
+            // 
+            this.btnLogin.Location = new System.Drawing.Point(12, 239);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(144, 45);
+            this.btnLogin.TabIndex = 3;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 300);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.buttonReflection2);
             this.Controls.Add(this.btnOpenAllForms);
@@ -82,5 +94,6 @@
         private Button btnOpenAllForms;
         private Button buttonReflection2;
         private Button btnRegister;
+        private Button btnLogin;
     }
 }
