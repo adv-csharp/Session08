@@ -26,6 +26,7 @@ namespace Session07.UI
             var repo = new Repository();
             var user = repo.AsQueryable<User>()
                    .Include(x => x.Role)
+                   .Include(x=>x.Role.PermissionRoles)
                    .FirstOrDefault(x => x.Username == textBoxUsername.Text);
             if(user != null)
             {

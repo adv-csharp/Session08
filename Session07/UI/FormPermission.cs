@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
 
 namespace Session07.UI
 {
@@ -20,11 +21,10 @@ namespace Session07.UI
         }
 
         List<string> checkedButtons = new List<string>();
+        Repository repo = new Repository();
 
         private void FormPermission_Load(object sender, EventArgs e)
         {
-            var repo = new Repository();
-
             comboBoxRoles.DisplayMember = "Name";
             comboBoxRoles.ValueMember = "Id";
             comboBoxRoles.DataSource = repo.AsQueryable<Role>().ToList();
@@ -62,20 +62,72 @@ namespace Session07.UI
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
+        { 
+            var permisions = repo.AsQueryable<Permission>().ToList();
+            var roleId = (int)comboBoxRoles.SelectedValue;
 
+            ICollection<PermissionRole> permissionRoles = repo.
+                    AsQueryable<Role>()
+                    .Include(x => x.PermissionRoles)
+                    .FirstOrDefault(x => x.Id == roleId)                    
+                    .PermissionRoles;
+            foreach (var PermissionRole in permissionRoles)
+            {
+                repo.Delete(PermissionRole);
+            }
+
+
+            foreach (var checkedButton in checkedButtons)
+            {
+                var parts = checkedButton.Split("|");
+                var formName = parts[0];
+                var buttonName = parts[1];
+
+                if (buttonName == "")
+                {
+                    continue;
+                }
+
+                var permission = permisions.FirstOrDefault(x => x.FormName ==  formName && x.ButtonName == buttonName);
+                if (permission == null)
+                {
+                    permission = new Permission { ButtonName = buttonName, FormName = formName };
+                    repo.Add(permission);
+                }
+
+                repo.Add(new PermissionRole { Permission = permission, RoleId = roleId });
+            }
+            MessageBox.Show("Done");
         }
 
         private void checkedListBoxControls_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var formName = listBoxForms.SelectedItem as string;
-            if (e.NewValue == CheckState.Checked)
+            string key = formName + "|" + checkedListBoxControls.SelectedItem as string;
+            if (e.NewValue == CheckState.Checked && !checkedButtons.Contains(key))
             {
-                checkedButtons.Add(formName + "|" + checkedListBoxControls.SelectedItem as string);
+                checkedButtons.Add(key);
             }
-            else
+            if (e.NewValue == CheckState.Unchecked && checkedButtons.Contains(key))
             {
-                checkedButtons.Remove(formName + "|" + checkedListBoxControls.SelectedItem as string);
+                checkedButtons.Remove(key);
+            }
+        }
+
+        private void comboBoxRoles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkedButtons.Clear();
+            var permisions = repo.AsQueryable<Permission>().ToList();
+            var roleId = (int)comboBoxRoles.SelectedValue;
+            ICollection<PermissionRole> permissionRoles = repo.
+                    AsQueryable<Role>()
+                    .Include(x => x.PermissionRoles)                    
+                    .FirstOrDefault(x => x.Id == roleId)
+                    .PermissionRoles;
+            foreach (var permissionRole in permissionRoles)
+            {
+                var p = permisions.FirstOrDefault(p => p.Id == permissionRole.PermissionId);
+                checkedButtons.Add(p.FormName + "|" + p.ButtonName);
             }
         }
     }

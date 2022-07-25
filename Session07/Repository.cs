@@ -31,6 +31,12 @@ namespace Session07
             db.SaveChanges();
         }
 
+        public void Delete<T>(T model) where T : class
+        {
+            db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            db.SaveChanges();
+        }
+
         public T Find<T>(int id) where T : class
         {
             return db.Set<T>().Find(id);
