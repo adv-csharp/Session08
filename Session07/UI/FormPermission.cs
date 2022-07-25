@@ -33,7 +33,7 @@ namespace Session07.UI
             listBoxControls.Items.Clear();
             var formName = listBoxForms.SelectedItem as string;
             var formType = Type.GetType(formName);
-            var form = Activator.CreateInstance(formType) as Form;
+            using var form = Activator.CreateInstance(formType) as Form;
             foreach (var control in form.Controls)
             {
                 if(control is Button)
@@ -41,7 +41,6 @@ namespace Session07.UI
                     listBoxControls.Items.Add((control as Control).Name);
                 }
             }
-
         }
     }
 
