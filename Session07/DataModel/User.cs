@@ -7,5 +7,8 @@
         public string Password { get; set; }
         public string Salt { get; set; }
         public bool IsActive { get; set; }
+
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
     }
 }

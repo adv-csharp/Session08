@@ -33,6 +33,7 @@ namespace Session07.UI
                 }
                 else
                 {
+                    AppConfig.CurrentUser = user;
                     Hide();
                     var frm = new Form1();
                     frm.ShowDialog();

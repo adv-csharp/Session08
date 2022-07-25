@@ -1,4 +1,5 @@
 ﻿using Session07.UI;
+using Session07.Utils;
 using System.Reflection;
 
 namespace Session07
@@ -58,6 +59,11 @@ namespace Session07
         {
             var frm = new FormLogin();
             frm.ShowDialog();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            toolStripStatusLabelUser.Text = AppConfig.CurrentUser.Username;
         }
     }
 

@@ -1,6 +1,6 @@
 ﻿Authenticate
 	who are you
-Auhorize
+Authorize
 	what you can do
 
 Authenticate
@@ -26,3 +26,7 @@ Form
 	HASH 
 		hash(input + GUID), GUID
 			Salt
+
+
+Authorize
+ Role-based access control (RBAC)
