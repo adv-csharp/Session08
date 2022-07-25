@@ -48,5 +48,10 @@ namespace Session07.UI
                 MessageBox.Show("Username or password is not correct");
             }
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
