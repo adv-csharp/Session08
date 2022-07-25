@@ -29,16 +29,19 @@ namespace Session07.UI
                 var hash = Crypto.ToSHA512(textBoxPassword.Text + user.Salt);
                 if(hash != user.Password)
                 {
-                    MessageBox.Show("Password is not correct");
+                    MessageBox.Show("Username or password is not correct");
                 }
                 else
                 {
-                    MessageBox.Show("🎉🎉");
+                    Hide();
+                    var frm = new Form1();
+                    frm.ShowDialog();
+                    Close();
                 }
             }
             else
             {
-                MessageBox.Show("User Not found");
+                MessageBox.Show("Username or password is not correct");
             }
         }
     }
