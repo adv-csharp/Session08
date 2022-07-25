@@ -32,6 +32,8 @@ namespace Session07.UI
                 Password = Crypto.ToSHA512(textBoxPassword.Text + salt),
                 Salt = salt
             };
+            repo.Add(user);
+            MessageBox.Show("Register Successfully");
         }
     }
 }
