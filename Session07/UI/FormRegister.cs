@@ -25,12 +25,20 @@ namespace Session07.UI
             //policy
             //
             var repo = new Repository();
+
+            Role roleAdmin = new Role { Name = "admin" };
+            repo.Add(roleAdmin);
+            repo.Add(new Role { Name = "user" });
+            repo.Add(new Role { Name = "author" });
+            repo.Add(new Role { Name = "sales" });
+
             string salt = Guid.NewGuid().ToString();
             var user = new User
             {
                 Username = textBoxUsername.Text,
                 Password = Crypto.ToSHA512(textBoxPassword.Text + salt),
-                Salt = salt
+                Salt = salt,
+                Role = roleAdmin
             };
             repo.Add(user);
             MessageBox.Show("Register Successfully");

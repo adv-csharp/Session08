@@ -64,6 +64,7 @@ namespace Session07
         private void Form1_Load(object sender, EventArgs e)
         {
             toolStripStatusLabelUser.Text = AppConfig.CurrentUser.Username;
+            toolStripStatusLabelRole.Text = AppConfig.CurrentUser.Role.Name;
         }
     }
 

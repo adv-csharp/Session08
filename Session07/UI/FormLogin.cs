@@ -1,4 +1,5 @@
-﻿using Session07.DataModel;
+﻿using Microsoft.EntityFrameworkCore;
+using Session07.DataModel;
 using Session07.Utils;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace Session07.UI
 {
@@ -23,6 +25,7 @@ namespace Session07.UI
         {
             var repo = new Repository();
             var user = repo.AsQueryable<User>()
+                   .Include(x => x.Role)
                    .FirstOrDefault(x => x.Username == textBoxUsername.Text);
             if(user != null)
             {
