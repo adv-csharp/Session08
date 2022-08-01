@@ -1,4 +1,5 @@
-﻿using Session07.UI;
+﻿using Session07.DataModel;
+using Session07.UI;
 using Session07.Utils;
 using System.Reflection;
 
@@ -65,6 +66,34 @@ namespace Session07
         {
             toolStripStatusLabelUser.Text = AppConfig.CurrentUser.Username;
             toolStripStatusLabelRole.Text = AppConfig.CurrentUser.Role.Name;
+
+            var repo = new Repository();
+            var permisions = repo.AsQueryable<Permission>().ToList();
+
+            foreach (var control in Controls)
+            {
+                if(control is Button)
+                {
+                    var btn = control as Button;
+                    btn.Enabled = false;
+                    //var p = permisions.Where(x => x.FormName == this.GetType().FullName && x.ButtonName == btn.Name);
+                    //if(p.Count() > 0)
+                    //{
+                    //    btn.Enabled = true;
+                    //}
+
+                    //var p = permisions.Count(x => x.FormName == this.GetType().FullName && x.ButtonName == btn.Name);
+                    //if (p > 0)
+                    //{
+                    //    btn.Enabled = true;
+                    //}
+                    
+                    if (permisions.Any(x => x.FormName == this.GetType().FullName && x.ButtonName == btn.Name))
+                    {
+                        btn.Enabled = true;
+                    }
+                }
+            }
         }
     }
 
